@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="tasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="task"/>
+        <xs:element maxOccurs="unbounded" ref="category"/>
+        <xs:element ref="guid"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="category">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="note"/>
+      </xs:sequence>
+      <xs:attribute name="categorizables" use="required"/>
+      <xs:attribute name="creationDateTime" use="required"/>
+      <xs:attribute name="expandedContexts" use="required"/>
+      <xs:attribute name="id" use="required"/>
+      <xs:attribute name="modificationDateTime" use="required"/>
+      <xs:attribute name="status" use="required" type="xs:integer"/>
+      <xs:attribute name="subject" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guid" type="xs:string"/>
+  <xs:element name="task">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="task"/>
+        <xs:element minOccurs="0" ref="description"/>
+        <xs:element minOccurs="0" ref="recurrence"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="effort"/>
+        <xs:element minOccurs="0" ref="note"/>
+      </xs:sequence>
+      <xs:attribute name="actualstartdate"/>
+      <xs:attribute name="budget" type="xs:time"/>
+      <xs:attribute name="completiondate"/>
+      <xs:attribute name="creationDateTime" use="required"/>
+      <xs:attribute name="duedate"/>
+      <xs:attribute name="expandedContexts"/>
+      <xs:attribute name="fixedFee" type="xs:decimal"/>
+      <xs:attribute name="hourlyFee" type="xs:decimal"/>
+      <xs:attribute name="id" use="required"/>
+      <xs:attribute name="modificationDateTime" use="required"/>
+      <xs:attribute name="percentageComplete" type="xs:integer"/>
+      <xs:attribute name="plannedstartdate"/>
+      <xs:attribute name="prerequisites"/>
+      <xs:attribute name="priority" type="xs:integer"/>
+      <xs:attribute name="reminder"/>
+      <xs:attribute name="status" use="required" type="xs:integer"/>
+      <xs:attribute name="subject" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recurrence">
+    <xs:complexType>
+      <xs:attribute name="max" type="xs:integer"/>
+      <xs:attribute name="sameWeekday" type="xs:NCName"/>
+      <xs:attribute name="stop_datetime"/>
+      <xs:attribute name="unit" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="effort">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="description"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required"/>
+      <xs:attribute name="start" use="required"/>
+      <xs:attribute name="status" use="required" type="xs:integer"/>
+      <xs:attribute name="stop" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="note">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="description"/>
+      </xs:sequence>
+      <xs:attribute name="bgColor"/>
+      <xs:attribute name="creationDateTime" use="required"/>
+      <xs:attribute name="icon" type="xs:NCName"/>
+      <xs:attribute name="id" use="required"/>
+      <xs:attribute name="modificationDateTime" use="required"/>
+      <xs:attribute name="selectedIcon" type="xs:NCName"/>
+      <xs:attribute name="status" use="required" type="xs:integer"/>
+      <xs:attribute name="subject" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="description" type="xs:string"/>
+</xs:schema>
